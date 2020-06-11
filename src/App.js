@@ -1,26 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import Calc from "./calc";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+
+    state = {};
+
+render() {
+    //Получем в консоль данные с http://localhost:8888/
+    axios.get('http://localhost:8888/')
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    //Получем в консоль данные с http://localhost:8888/tweet/5
+    axios.get('http://localhost:8888/tweet/5')
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    //Получем в консоль данные с http://localhost:8888/isEven?n=8
+    axios.get('http://localhost:8888/isEven?n=8')
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+
+    return (
+        <div className="App">
+            <Calc/>
+
+        </div>
+    );
+
+}
+
+
 }
 
 export default App;
